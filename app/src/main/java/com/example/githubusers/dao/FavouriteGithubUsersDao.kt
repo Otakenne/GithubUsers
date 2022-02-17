@@ -1,12 +1,10 @@
 package com.example.githubusers.dao
 
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Query
 import com.example.githubusers.model.GithubUser
 import io.reactivex.Completable
 import io.reactivex.Flowable
-import io.reactivex.Single
-import kotlinx.coroutines.flow.Flow
-import java.util.concurrent.Callable
 
 /**
  * Data access object to perform bulk operations on the github_user_table (get and delete all users)

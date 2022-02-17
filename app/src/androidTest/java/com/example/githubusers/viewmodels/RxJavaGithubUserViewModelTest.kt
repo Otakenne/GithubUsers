@@ -14,6 +14,10 @@ import org.junit.*
 import org.junit.runner.RunWith
 import javax.inject.Inject
 
+/**
+ * Class to test the RxJavaGithubUserViewModel's methods
+ * @author Otakenne
+ */
 @HiltAndroidTest
 @RunWith(AndroidJUnit4::class)
 class RxJavaGithubUserViewModelTest : TestCase() {
@@ -24,10 +28,17 @@ class RxJavaGithubUserViewModelTest : TestCase() {
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
+    /**
+     * Allows tests to run synchronously
+     * @author Otakenne
+     */
     @Inject
     lateinit var githubUsersDatabase: GithubUsersDatabase
     private lateinit var githubUserDao: GithubUserDao
 
+    /**
+     * Documentation provided by Android
+     */
     @Before
     public override fun setUp() {
         hiltRule.inject()
@@ -35,11 +46,10 @@ class RxJavaGithubUserViewModelTest : TestCase() {
         githubUserDao = githubUsersDatabase.githubUserDao()
     }
 
-    @After
-    public override fun tearDown() {
-
-    }
-
+    /**
+     * Tests the insertGithubUserFromRoom and getGithubUserFromRoom methods
+     * @author Otakenne
+     */
     @Test
     fun insertAndGetGithubUserFromRoomTest() {
         val githubUser = GithubUser(id = 0, name = "Test User", userName = "testuser")
@@ -49,25 +59,14 @@ class RxJavaGithubUserViewModelTest : TestCase() {
         }
     }
 
-    @Test
-    fun deleteGithubUserFromRoomTest() {
-        val githubUser = GithubUser(id = 0, name = "Test User", userName = "testuser")
-        githubUserDao.insertGithubUser(githubUser).test()
-        githubUserDao.deleteGithubUser(githubUser).blockingAwait()
-        githubUserDao.getGithubUser(githubUser.id).test().assertValue {
-            it.name == null
-        }
-    }
-
+    /**
+     * Tests the githubUserExists method
+     * @author Otakenne
+     */
     @Test
     fun githubUserExistsTest() {
         val githubUser = GithubUser(id = 0, name = "Test User", userName = "testuser")
         githubUserDao.insertGithubUser(githubUser).test()
         githubUserDao.githubUserExists(githubUser.id).test().assertValue { it }
     }
-
-//    @Test
-//    fun getGithubUserFromAPI() {
-//
-//    }
 }

@@ -4,9 +4,6 @@ import com.example.githubusers.dao.FavouriteGithubUsersDao
 import com.example.githubusers.model.GithubUser
 import io.reactivex.Completable
 import io.reactivex.Flowable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 /**

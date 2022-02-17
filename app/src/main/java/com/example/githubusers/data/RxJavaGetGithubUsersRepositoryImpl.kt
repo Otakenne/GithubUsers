@@ -9,10 +9,19 @@ import com.example.githubusers.utility.Constants
 import io.reactivex.Flowable
 import javax.inject.Inject
 
+/**
+ * Repository to act as a single source of truth for paged lagos github users
+ * @author Otakenne
+ */
 class RxJavaGetGithubUsersRepositoryImpl @Inject constructor(
     private val pagingSource: RxJavaGithubUsersPagingSource
     ): RxJavaGetGithubUsersRepository {
 
+    /**
+     * Gets paged github users from API
+     * @return flowable of paged github users
+     * @author Otakenne
+     */
     override fun getGithubUsers(): Flowable<PagingData<GithubUser>> {
         return Pager(
             config = PagingConfig(

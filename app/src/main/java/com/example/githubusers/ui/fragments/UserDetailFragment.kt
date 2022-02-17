@@ -11,6 +11,9 @@ import com.example.githubusers.ui.activities.MainActivity
 import com.example.githubusers.viewmodels.RxJavaGithubUserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ * Fragment showing github user profile
+ */
 @AndroidEntryPoint
 class UserDetailFragment : Fragment() {
     private val navigationArgs: UserDetailFragmentArgs by navArgs()
@@ -19,6 +22,9 @@ class UserDetailFragment : Fragment() {
 
     private val mViewModel: RxJavaGithubUserViewModel by viewModels()
 
+    /**
+     * Documentation provided by Android
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,16 +34,22 @@ class UserDetailFragment : Fragment() {
         return binding.root
     }
 
+    /**
+     * Documentation provided by Android
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         (activity as MainActivity).supportActionBar?.title = "@${navigationArgs.githubUserUsername}"
-        setHasOptionsMenu(true);
+        setHasOptionsMenu(true)
 
         binding.lifecycleOwner = this
         binding.viewModel = mViewModel
     }
 
+    /**
+     * Documentation provided by Android
+     */
     override fun onPrepareOptionsMenu(menu: Menu) {
         menu.findItem(R.id.favouriteGithubUsersFragment2).isVisible = false
         super.onPrepareOptionsMenu(menu)

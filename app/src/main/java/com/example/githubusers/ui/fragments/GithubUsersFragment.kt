@@ -1,21 +1,16 @@
 package com.example.githubusers.ui.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.githubusers.api.GithubUsersService
-import com.example.githubusers.data.RxJavaGetGithubUsersRepositoryImpl
-import com.example.githubusers.data.RxJavaGithubUsersPagingSource
 import com.example.githubusers.databinding.FragmentGithubUsersBinding
 import com.example.githubusers.ui.activities.MainActivity
 import com.example.githubusers.ui.adapters.GithubUsersLoadStateAdapter
@@ -25,11 +20,12 @@ import com.example.githubusers.viewmodels.RxJavaGithubUsersViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.InternalCoroutinesApi
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * Fragment showing a paged list of all github users that match the "lagos" search term
+ */
 @AndroidEntryPoint
 class GithubUsersFragment : Fragment() {
     private val mDisposable = CompositeDisposable()
@@ -40,6 +36,9 @@ class GithubUsersFragment : Fragment() {
     @Inject lateinit var mViewModel: RxJavaGithubUsersViewModel
     @Inject lateinit var mAdapter: RxJavaGithubUsersAdapter
 
+    /**
+     * Documentation provided by Android
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,13 +47,18 @@ class GithubUsersFragment : Fragment() {
         return binding.root
     }
 
+    /**
+     * Documentation provided by Android
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         (activity as MainActivity).supportActionBar?.title = "${Constants.GITHUB_QUERY_TERM} Github Users"
 
+        // map retry button to paged adapter's reply function
         binding.retryButton.setOnClickListener { mAdapter.retry() }
 
+        // set footer loader for paged adapter
         binding.githubUsersList.layoutManager = LinearLayoutManager(view.context, RecyclerView.VERTICAL, false)
         binding.githubUsersList.adapter = mAdapter.withLoadStateHeaderAndFooter(
             header = GithubUsersLoadStateAdapter { mAdapter.retry() },
@@ -62,7 +66,6 @@ class GithubUsersFragment : Fragment() {
         )
 
         mAdapter.setOnClickListener {
-            Toast.makeText(view.context, "${it.userName} Clicked", Toast.LENGTH_SHORT).show()
             val action = GithubUsersFragmentDirections.actionGithubUsersFragmentToUserDetailFragment(it.id, it.userName)
             findNavController().navigate(action)
         }
@@ -82,6 +85,7 @@ class GithubUsersFragment : Fragment() {
             }
         }
 
+        // listen/subscribe to changes from RxJava flowable
         mDisposable.add(mViewModel.getGithubUsers().subscribe {
             lifecycleScope.launch {
                 mAdapter.submitData(it)
@@ -89,6 +93,9 @@ class GithubUsersFragment : Fragment() {
         })
     }
 
+    /**
+     * Documentation provided by Android
+     */
     override fun onDestroy() {
         super.onDestroy()
         mDisposable.clear()

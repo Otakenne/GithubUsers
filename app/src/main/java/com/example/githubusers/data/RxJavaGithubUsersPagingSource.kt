@@ -1,13 +1,11 @@
 package com.example.githubusers.data
 
-import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import androidx.paging.rxjava2.RxPagingSource
 import com.example.githubusers.api.GithubUsersService
 import com.example.githubusers.model.GithubUser
 import com.example.githubusers.model.GithubUsersResponse
 import com.example.githubusers.utility.Constants
-import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject

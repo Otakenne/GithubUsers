@@ -1,24 +1,35 @@
 package com.example.githubusers.ui.adapters
 
-import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.res.TypedArrayUtils.getString
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
-import coil.load
-import com.example.githubusers.R
-import com.example.githubusers.databinding.GithubUserRowBinding
 import com.example.githubusers.model.GithubUser
 import javax.inject.Inject
 
+/**
+ * Paging adapter for the github users fragment
+ * @author Otakenne
+ */
 class RxJavaGithubUsersAdapter @Inject constructor() : PagingDataAdapter<GithubUser, GithubUserViewHolder>(COMPARATOR) {
-    var clickListener: ((GithubUser) -> Unit)? = null
+    /**
+     * Click listener set by adapter's caller
+     * @author Otakenne
+     */
+    private var clickListener: ((GithubUser) -> Unit)? = null
 
+    /**
+     * Listens for click events to each item view
+     * @param clickListener: function that accepts a GithubUser instance and executes a command defined by adapter's caller
+     * @author Otakenne
+     */
     fun setOnClickListener(clickListener: ((GithubUser) -> Unit)) {
         this.clickListener = clickListener
     }
 
+    /**
+     * Compares changes in the paging adapter and reacts by updating the view
+     * @author Otakenne
+     */
     companion object {
         private val COMPARATOR = object : DiffUtil.ItemCallback<GithubUser>() {
             override fun areItemsTheSame(oldItem: GithubUser, newItem: GithubUser): Boolean {
@@ -31,36 +42,23 @@ class RxJavaGithubUsersAdapter @Inject constructor() : PagingDataAdapter<GithubU
         }
     }
 
+    /**
+     * Documentation provided by Android
+     */
     override fun onBindViewHolder(holder: GithubUserViewHolder, position: Int) {
         getItem(position)?.let {
             val githubUser = it
-            holder.bind(githubUser, position)
+            holder.bind(githubUser)
             holder.itemView.setOnClickListener {
                 clickListener?.let { it1 -> it1(githubUser) }
             }
         }
     }
 
+    /**
+     * Documentation provided by Android
+     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GithubUserViewHolder {
         return GithubUserViewHolder.create( parent )
-    }
-}
-
-class GithubUserViewHolder(private val binding: GithubUserRowBinding) : RecyclerView.ViewHolder(binding.root) {
-    fun bind(githubUser: GithubUser, position: Int) {
-        with(githubUser) {
-            binding.githubUserRowAvatar.load(githubUser.avatarURL) {
-                crossfade(true)
-            }
-            binding.githubUserRowUsername.text = "@${githubUser.userName}"
-        }
-    }
-
-    companion object {
-        fun create(parent: ViewGroup): GithubUserViewHolder {
-            val view = LayoutInflater.from(parent.context).inflate(R.layout.github_user_row,  parent,false)
-            val binding = GithubUserRowBinding.bind(view)
-            return GithubUserViewHolder( binding )
-        }
     }
 }

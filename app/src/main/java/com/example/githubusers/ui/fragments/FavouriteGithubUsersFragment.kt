@@ -6,7 +6,6 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.onNavDestinationSelected
 import com.example.githubusers.R
 import com.example.githubusers.databinding.FragmentFavouriteGithubUsersBinding
 import com.example.githubusers.ui.activities.MainActivity
@@ -18,7 +17,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
- * Fragment showing a list of
+ * Fragment showing a list of favourite github users
  */
 @AndroidEntryPoint
 class FavouriteGithubUsersFragment : Fragment() {
@@ -32,6 +31,9 @@ class FavouriteGithubUsersFragment : Fragment() {
     @Inject
     lateinit var mAdapter: RxJavaFavouriteGithubUsersAdapter
 
+    /**
+     * Documentation provided by Android
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,7 +41,9 @@ class FavouriteGithubUsersFragment : Fragment() {
         _binding = FragmentFavouriteGithubUsersBinding.inflate(inflater, container, false)
         return binding.root
     }
-
+    /**
+     * Documentation provided by Android
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -68,11 +72,17 @@ class FavouriteGithubUsersFragment : Fragment() {
         })
     }
 
+    /**
+     * Documentation provided by Android
+     */
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.favourites_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
 
+    /**
+     * Documentation provided by Android
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id: Int = item.itemId
         if (id == R.id.delete_favourites) {
@@ -81,11 +91,17 @@ class FavouriteGithubUsersFragment : Fragment() {
         return super.onOptionsItemSelected(item)
     }
 
+    /**
+     * Documentation provided by Android
+     */
     override fun onPrepareOptionsMenu(menu: Menu) {
         menu.findItem(R.id.favouriteGithubUsersFragment2).isVisible = false
         super.onPrepareOptionsMenu(menu)
     }
 
+    /**
+     * Documentation provided by Android
+     */
     override fun onDestroy() {
         super.onDestroy()
         mDisposable.clear()

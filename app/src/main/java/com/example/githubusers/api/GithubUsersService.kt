@@ -3,15 +3,13 @@ package com.example.githubusers.api
 import com.example.githubusers.model.GithubUser
 import com.example.githubusers.model.GithubUsersResponse
 import com.example.githubusers.utility.Constants
-import io.reactivex.Flowable
-import io.reactivex.Observable
 import io.reactivex.Single
-import okhttp3.Interceptor
-import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.*
+import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 /**
  * Interface responsible for calls to the Github API

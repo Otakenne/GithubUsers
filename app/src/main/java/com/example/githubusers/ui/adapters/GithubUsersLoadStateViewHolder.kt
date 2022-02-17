@@ -8,6 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.githubusers.R
 import com.example.githubusers.databinding.GithubUsersFooterBinding
 
+/**
+ * Sets the view for the paged adapter's footer (the loading animation, error message textView and the button that triggers a reload of the subsequent adapter items)
+ * @author Otakenne
+ */
 class GithubUsersLoadStateViewHolder(
     private val binding: GithubUsersFooterBinding,
     retry: () -> Unit
@@ -17,6 +21,10 @@ class GithubUsersLoadStateViewHolder(
         binding.retryButton.setOnClickListener { retry.invoke() }
     }
 
+    /**
+     * Set the visibility of each view depending on the load state
+     * @author Otakenne
+     */
     fun bind(loadState: LoadState) {
         if (loadState is LoadState.Error) {
             binding.errorMsg.text = loadState.error.localizedMessage

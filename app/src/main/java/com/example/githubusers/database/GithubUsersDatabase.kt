@@ -10,6 +10,7 @@ import com.example.githubusers.model.GithubUser
 
 /**
  * Creates the application's database
+ * @author Otakenne
  */
 @Database(entities = [GithubUser::class], version = 2, exportSchema = false)
 abstract class GithubUsersDatabase : RoomDatabase() {

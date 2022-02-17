@@ -1,5 +1,8 @@
 package com.example.githubusers.utility
 
+/**
+ * Defines the universal constant values used through out the application
+ */
 class Constants {
     companion object {
         const val BASE_URL = "https://api.github.com/"

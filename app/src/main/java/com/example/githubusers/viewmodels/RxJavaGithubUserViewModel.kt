@@ -15,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class RxJavaGithubUserViewModel @Inject constructor(
     private val githubUserRepository: RxJavaGithubUserRepository,
-    private val state: SavedStateHandle
+    state: SavedStateHandle
 ): ViewModel() {
 
     private var myCompositeDisposable = CompositeDisposable()
@@ -117,6 +117,9 @@ class RxJavaGithubUserViewModel @Inject constructor(
         myCompositeDisposable.add(flowable)
     }
 
+    /**
+     * Documentation provided by Android
+     */
     override fun onCleared() {
         super.onCleared()
         myCompositeDisposable.clear()
