@@ -17,6 +17,9 @@ import io.reactivex.disposables.CompositeDisposable
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * Fragment showing a list of
+ */
 @AndroidEntryPoint
 class FavouriteGithubUsersFragment : Fragment() {
     private val mDisposable = CompositeDisposable()

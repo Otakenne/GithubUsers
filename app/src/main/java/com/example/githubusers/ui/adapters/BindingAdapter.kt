@@ -4,10 +4,12 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.databinding.BindingAdapter
-import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.example.githubusers.model.GithubUser
 
+/**
+ * Binding adapter method to load images with the coil library
+ * @author Otakenne
+ */
 @BindingAdapter("imageUrl")
 fun loadImage(
     imageView: ImageView,
@@ -18,6 +20,10 @@ fun loadImage(
     }
 }
 
+/**
+ * Binding adapter method to clip the edges of a linearlayout, I use them to simulate rounded images
+ * @author Otakenne
+ */
 @BindingAdapter("clipToOutline")
 fun clipToOutline(
     linearLayout: LinearLayout,
@@ -28,6 +34,10 @@ fun clipToOutline(
     }
 }
 
+/**
+ * Binding adapter method to toggle view's visibility
+ * @author Otakenne
+ */
 @BindingAdapter("visibility")
 fun isVisible(view: View, visible: Boolean) {
     when (visible) {
