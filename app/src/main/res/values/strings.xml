@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">GithubUsers</string>
+    <string name="github_user_avatar">github user avatar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="retry">Retry</string>
+    <string name="removeFromFavourite">Remove from Favourite</string>
+    <string name="addToFavourite">Add to Favourite</string>
+    <string name="favourites">Favourites</string>
+    <string name="delete_favourites">Delete Favourites</string>
+    <string name="you_don_t_have_any_favourites_at_this_time">You don\'t have any favourites at this time.</string>
+    <string name="username_format">\@%s</string>
+    <string name="email">Email</string>
+    <string name="location">Location</string>
+    <string name="public_repositories">Public Repositories</string>
+    <string name="followers">Followers</string>
+    <string name="following">Following</string>
+    <string name="no_bio">No bio</string>
+</resources>

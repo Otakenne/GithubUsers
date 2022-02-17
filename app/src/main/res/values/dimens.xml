@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="standard_margin">20dp</dimen>
+    <dimen name="button_radius">30dp</dimen>
+    <dimen name="basic_text_size">17sp</dimen>
+    <dimen name="header_text_size">20sp</dimen>
+    <dimen name="secondary_text_size">17sp</dimen>
+    <dimen name="half_standard_margin">10dp</dimen>
+    <dimen name="quarter_standard_margin">5dp</dimen>
+    <dimen name="double_standard_margin">40dp</dimen>
+</resources>

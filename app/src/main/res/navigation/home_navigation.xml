@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_navigation"
+    app:startDestination="@id/githubUsersFragment">
+
+    <fragment
+        android:id="@+id/githubUsersFragment"
+        android:name="com.example.githubusers.ui.fragments.GithubUsersFragment"
+        android:label="fragment_github_users"
+        tools:layout="@layout/fragment_github_users" >
+        <action
+            android:id="@+id/action_githubUsersFragment_to_userDetailFragment"
+            app:destination="@id/userDetailFragment" />
+        <action
+            android:id="@+id/action_githubUsersFragment_to_favouriteGithubUsersFragment2"
+            app:destination="@id/favouriteGithubUsersFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/userDetailFragment"
+        android:name="com.example.githubusers.ui.fragments.UserDetailFragment"
+        android:label="fragment_user_detail"
+        tools:layout="@layout/fragment_user_detail" >
+        <argument
+            android:name="github_user_id"
+            app:argType="long" />
+        <argument
+            android:name="github_user_username"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/favouriteGithubUsersFragment2"
+        android:name="com.example.githubusers.ui.fragments.FavouriteGithubUsersFragment"
+        android:label="FavouriteGithubUsersFragment" >
+        <action
+            android:id="@+id/action_favouriteGithubUsersFragment2_to_userDetailFragment"
+            app:destination="@id/userDetailFragment" />
+    </fragment>
+</navigation>

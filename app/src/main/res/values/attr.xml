@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="default_color" format="reference|color" />
+    <attr name="default_color_secondary" format="reference|color" />
+    <attr name="default_text_color" format="reference|color" />
+    <attr name="secondary_text_color" format="reference|color" />
+    <attr name="accent_color" format="reference|color" />
+    <attr name="mainButtonBackgroundColor" format="reference|color" />
+    <attr name="separator_view_color" format="reference|color" />
+    <attr name="picture_background_color" format="reference|color" />
+</resources>
